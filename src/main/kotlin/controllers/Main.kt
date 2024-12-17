@@ -19,7 +19,7 @@ import java.util.*
 
 data class billete(
 
-    var tipo : Double,
+    var tipo : Int,
     var zona : Int
 )
 
@@ -51,11 +51,8 @@ fun menu(scan: Scanner) {
         )
 
         when (opcion) {
-            1 -> op1("Elige una zona (1, 2, 3): ", scan, cesta)
-            2 -> op1("Elige una zona (1, 2, 3): ", scan, cesta)
-            3 -> op1("Elige una zona (1, 2, 3): ", scan, cesta)
-            4 -> op1("Elige una zona (1, 2, 3): ", scan, cesta)
-            5 -> op1("Elige una zona (1, 2, 3): ", scan, cesta)
+
+            in 1..5 -> zona("Escoge una zona, para ir atras 0",scan, opcion, cesta, scan)
             else -> println("Opción no válida. Intenta nuevamente.")
         }
     } while (opcion != 4321)
@@ -83,28 +80,28 @@ fun pedirdinero(msg: String, scan: Scanner): Double {
 
 
 
-fun op1(msg: String, scan: Scanner, cesta: MutableList<billete>) {
+fun zona(msg: String, scan: Scanner, tipo: Int, cesta: MutableList<billete>, scanner: Scanner) {
 
-    var tipo = 2.40
-    if (cesta.size < 3){
-        print(msg)
-        val num = scan.nextInt()
-        cesta.add(billete(tipo = tipo, zona = num))
-        println("Billete anyadido")
-        if(cesta.size <3){
-            scan.nextLine()
-            println("Quieres anyadir otro billete? [s/n]")
+    println(msg)
+    var opcion = scan.nextInt()
+    scan.nextLine()
 
-            var sn = scan.nextLine()
-            if(sn == "s"){
-                menu(scan)
+    if (opcion == 0) {
+        println("Volviendo Menu principal ...")
+        return
+    }else if (opcion in 1..3) {
+        cesta.add(billete(tipo = tipo, zona = opcion))
+        if(cesta.size<3){
+            println("Quieres anyadir otro Billete ? (n/s)")
+            var sino = scanner.nextLine()
+            if (sino=="s"){
+                return
             }else{
+                println("Haciendo Calculos")
                 calculo(cesta)
-
             }
+
         }
-    }else{
-        println("Maximo de 3 billetes")
     }
 
 }
@@ -112,21 +109,51 @@ fun op1(msg: String, scan: Scanner, cesta: MutableList<billete>) {
 
 
 // Calculo de billetes con las zonas
-fun calculo(cesta: MutableList<billete>) : Float{
+fun calculo(cesta: MutableList<billete>){
 
-    var total : Float
+    var total = 0.00f
 
     for (i in 0 until cesta.size){
         // Determinamos tipo de zona
         var extra = if(cesta[i].zona == 1){1f} else if (cesta[i].zona==2){1.3125f}else{1.8443f}
 
-        total += extra * cesta[i].tipo.toDouble()
-
-
+        total += extra * cesta[i].tipo.toFloat()
 
     }
-    return total
+    println(total)
+
 
 }
 
 
+
+/*
+
+fun zona(msg: String, scan: Scanner, cesta: MutableList<billete>) {
+
+    var tipo = 2.40
+
+    if (cesta.size < 3){
+        print(msg)
+        val num = scan.nextInt()
+
+        cesta.add(billete(tipo = tipo, zona = num))
+        println("Billete anyadido")
+        if(cesta.size <3){
+            scan.nextLine()
+            println("Quieres anyadir otro billete? [s/n]")
+
+            var sn = scan.nextLine()
+            if(sn == "n"){
+                calculo(cesta)
+
+            }else{
+                menu(scan)
+            }
+        }
+    }else{
+        println("Maximo 3 billetes")
+    }
+
+}
+ */
