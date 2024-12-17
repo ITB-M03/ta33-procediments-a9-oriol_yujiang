@@ -15,6 +15,14 @@ import java.util.*
  *
  */
 
+// Data class guadar las opciones
+
+data class billete(
+
+    var tipo : Double,
+    var zona : Int
+)
+
 fun main() {
 
     val scan: Scanner = abrirScanner()
@@ -23,43 +31,34 @@ fun main() {
 }
 
 
-/**
- * ## Menu
- * @param pila Lista mutable para guardar y eliminar los valores
- * @param opcion Variable para guardar opcion escogida
- * @param dowhile Se ejecutara el menu primero despues comprobara mientras que no sea num 4 se repetira
- * @param do Llama la funcion [pedirNumero] y ejecuta un condicional dependiendo que opcion se hara una serie de ejecuciones
- * @param [cerrarScanner] Cerramos escaner cuando salga del programa
- *
- */
-
 fun menu(scan: Scanner) {
 
-    // Creación de la pila
-    val pila = mutableListOf<Int>()
-
+    // Creación de cesta para guardar la compra
+    val cesta = mutableListOf<billete>()
 
     var opcion: Int
     do {
         opcion = pedirNumero(
             """
             Escoge alguna opción:
-             1.- Añadir número
-             2.- Quitar número
-             3.- Mostrar contenido de la pila
-             4.- Salir
+             1.- Bitllet senzill
+             2.- TCasual
+             3.- TUsual 
+             4.- TFamiliar 
+             5.- TJove
             """.trimIndent(),
             scan
         )
 
         when (opcion) {
-            1 -> op1("Introduce un número para añadir: ", scan, pila)
-            2 -> op2(pila)
-            3 -> op3(pila)
-            4 -> println("Saliendo del programa...")
+            1 -> op1("Elige una zona (1, 2, 3): ", scan, cesta)
+            2 -> op1("Elige una zona (1, 2, 3): ", scan, cesta)
+            3 -> op1("Elige una zona (1, 2, 3): ", scan, cesta)
+            4 -> op1("Elige una zona (1, 2, 3): ", scan, cesta)
+            5 -> op1("Elige una zona (1, 2, 3): ", scan, cesta)
             else -> println("Opción no válida. Intenta nuevamente.")
         }
-    } while (opcion != 4)
+    } while (opcion != 4321)
 
     cerrarScanner(scan)
 }
@@ -77,61 +76,57 @@ fun pedirNumero(msg: String, scan: Scanner): Int {
     return scan.nextInt()
 }
 
+fun pedirdinero(msg: String, scan: Scanner): Double {
+    print(msg)
+    return scan.nextDouble()
+}
 
-/**
- *
- * ## Opcion Numero 1 (PUSH)
- * @param msg muestra el enunciado de la opcion
- * @param scan Escanea el valor para despues usarlo en la ejecucuion que ha pedido el usuario
- * @param pila Uso de la lista creada anteriormente
- * @param ifelse Comprobara que la lista no este llena si no lo esta lo anyadira sino mostrara que esta llena
- *
- */
 
-fun op1(msg: String, scan: Scanner, pila: MutableList<Int>) {
 
-    if (pila.size < 10){
+fun op1(msg: String, scan: Scanner, cesta: MutableList<billete>) {
+
+    var tipo = 2.40
+    if (cesta.size < 3){
         print(msg)
         val num = scan.nextInt()
-        pila.add(num)
-        println("Número añadido.")
+        cesta.add(billete(tipo = tipo, zona = num))
+        println("Billete anyadido")
+        if(cesta.size <3){
+            scan.nextLine()
+            println("Quieres anyadir otro billete? [s/n]")
+
+            var sn = scan.nextLine()
+            if(sn == "s"){
+                menu(scan)
+            }else{
+                calculo(cesta)
+
+            }
+        }
     }else{
-        println("Lista llena, no se puede anyadir mas de 10 numeros.")
+        println("Maximo de 3 billetes")
     }
 
 }
 
 
-/**
- *
- * ## Opcion Numero 2 (POP)
- * @param pila Usamos la lista para acceder el contenido
- * @param ifelse Comprobara primero que no este vacia, si no lo esta sacara el ultimo numero introducido
- */
 
-fun op2(pila: MutableList<Int>) {
-    if (pila.isNotEmpty()) {
-        val removed = pila.removeAt(pila.size - 1)
-        println("Número eliminado: $removed")
-    } else {
-        println("La pila está vacia, no se puede quitar ningun numero.")
+// Calculo de billetes con las zonas
+fun calculo(cesta: MutableList<billete>) : Float{
+
+    var total : Float
+
+    for (i in 0 until cesta.size){
+        // Determinamos tipo de zona
+        var extra = if(cesta[i].zona == 1){1f} else if (cesta[i].zona==2){1.3125f}else{1.8443f}
+
+        total += extra * cesta[i].tipo.toDouble()
+
+
 
     }
+    return total
+
 }
 
-/**
- *
- * ## Opcion 3 (Println)
- *
- * @param pila Usamos lista para despues ser mostrado en pantalla
- * @param ifelse Comprobamos si esta vacio o no si lo esta saldra un mensaje que esta vacio
- *
- */
 
-fun op3(pila: MutableList<Int>) {
-    if (pila.isNotEmpty()) {
-        println("Contenido de la pila: $pila")
-    } else {
-        println("La pila está vacía.")
-    }
-}
