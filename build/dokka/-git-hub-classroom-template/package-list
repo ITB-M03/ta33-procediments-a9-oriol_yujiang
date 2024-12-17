@@ -1,0 +1,37 @@
+$dokka.format:html-v1
+$dokka.linkExtension:html
+$dokka.location:controllers////PointingToDeclaration/-git-hub-classroom-template/controllers/index.html
+$dokka.location:controllers/MainKt///PointingToDeclaration/-git-hub-classroom-template/controllers/-main-kt/index.html
+$dokka.location:controllers/MainKt/abrirscanner/#/PointingToDeclaration/-git-hub-classroom-template/controllers/-main-kt/abrirscanner.html
+$dokka.location:controllers/MainKt/calcularcambio/#kotlin.Double#kotlin.Double/PointingToDeclaration/-git-hub-classroom-template/controllers/-main-kt/calcularcambio.html
+$dokka.location:controllers/MainKt/calculo/#kotlin.collections.MutableList[controllers.billete]#java.util.Scanner/PointingToDeclaration/-git-hub-classroom-template/controllers/-main-kt/calculo.html
+$dokka.location:controllers/MainKt/cerrarprogr/#kotlin.Int/PointingToDeclaration/-git-hub-classroom-template/controllers/-main-kt/cerrarprogr.html
+$dokka.location:controllers/MainKt/cerrarscanner/#java.util.Scanner/PointingToDeclaration/-git-hub-classroom-template/controllers/-main-kt/cerrarscanner.html
+$dokka.location:controllers/MainKt/imprimirtiquet/#kotlin.collections.MutableList[controllers.billete]#kotlin.Double/PointingToDeclaration/-git-hub-classroom-template/controllers/-main-kt/imprimirtiquet.html
+$dokka.location:controllers/MainKt/main/#/PointingToDeclaration/-git-hub-classroom-template/controllers/-main-kt/main.html
+$dokka.location:controllers/MainKt/menu/#java.util.Scanner/PointingToDeclaration/-git-hub-classroom-template/controllers/-main-kt/menu.html
+$dokka.location:controllers/MainKt/pagar/#kotlin.collections.MutableList[controllers.billete]#kotlin.Double#java.util.Scanner/PointingToDeclaration/-git-hub-classroom-template/controllers/-main-kt/pagar.html
+$dokka.location:controllers/MainKt/pedirnumero/#kotlin.String#java.util.Scanner/PointingToDeclaration/-git-hub-classroom-template/controllers/-main-kt/pedirnumero.html
+$dokka.location:controllers/MainKt/pedirtipo/#java.util.Scanner/PointingToDeclaration/-git-hub-classroom-template/controllers/-main-kt/pedirtipo.html
+$dokka.location:controllers/MainKt/pedirzona/#kotlin.String#java.util.Scanner#kotlin.collections.MutableList[controllers.billete]/PointingToDeclaration/-git-hub-classroom-template/controllers/-main-kt/pedirzona.html
+$dokka.location:controllers/billete///PointingToDeclaration/-git-hub-classroom-template/controllers/billete/index.html
+$dokka.location:controllers/billete/billete/#kotlin.Double#kotlin.Int/PointingToDeclaration/-git-hub-classroom-template/controllers/billete/billete.html
+$dokka.location:controllers/billete/getTipo/#/PointingToDeclaration/-git-hub-classroom-template/controllers/billete/get-tipo.html
+$dokka.location:controllers/billete/getZona/#/PointingToDeclaration/-git-hub-classroom-template/controllers/billete/get-zona.html
+$dokka.location:controllers/billete/setTipo/#kotlin.Double/PointingToDeclaration/-git-hub-classroom-template/controllers/billete/set-tipo.html
+$dokka.location:controllers/billete/setZona/#kotlin.Int/PointingToDeclaration/-git-hub-classroom-template/controllers/billete/set-zona.html
+$dokka.location:interfaces////PointingToDeclaration/-git-hub-classroom-template/interfaces/index.html
+$dokka.location:interfaces/MyInterface///PointingToDeclaration/-git-hub-classroom-template/interfaces/-my-interface/index.html
+$dokka.location:models////PointingToDeclaration/-git-hub-classroom-template/models/index.html
+$dokka.location:models/MyModel///PointingToDeclaration/-git-hub-classroom-template/models/-my-model/index.html
+$dokka.location:models/MyModel/MyModel/#/PointingToDeclaration/-git-hub-classroom-template/models/-my-model/-my-model.html
+$dokka.location:models/MyModel/function/#/PointingToDeclaration/-git-hub-classroom-template/models/-my-model/function.html
+$dokka.location:utilities////PointingToDeclaration/-git-hub-classroom-template/utilities/index.html
+$dokka.location:utilities/MyUtilsKt///PointingToDeclaration/-git-hub-classroom-template/utilities/-my-utils-kt/index.html
+$dokka.location:utilities/MyUtilsKt/abrirScanner/#/PointingToDeclaration/-git-hub-classroom-template/utilities/-my-utils-kt/abrir-scanner.html
+$dokka.location:utilities/MyUtilsKt/cerrarScanner/#java.util.Scanner/PointingToDeclaration/-git-hub-classroom-template/utilities/-my-utils-kt/cerrar-scanner.html
+controllers
+interfaces
+models
+utilities
+

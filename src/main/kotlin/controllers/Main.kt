@@ -1,12 +1,23 @@
 package controllers
 
 import java.util.*
-
+/**
+ * Data class que representa un billete de metro, con su tipo y zona.
+ *
+ * @param tipo El precio del billete.
+ * @param zona La zona del billete (1, 2 o 3).
+ */
 data class billete(
     var tipo: Double,  // Cambiado de Int a Double
     var zona: Int
 )
 
+/**
+ * Función principal que inicia la máquina expendedora y gestiona la compra de billetes.
+ *
+ * Inicia el proceso, mostrando el menú y permitiendo seleccionar el tipo de billete,
+ * la zona y realizar el pago.
+ */
 fun main() {
     val scan = abrirscanner()
     val cesta = mutableListOf<billete>()
@@ -34,18 +45,39 @@ fun main() {
     cerrarscanner(scan)
 }
 
+/**
+ * Función que abre un objeto `Scanner` configurado para leer entradas del usuario.
+ *
+ * @return Un objeto `Scanner` para leer entradas desde la consola.
+ */
 fun abrirscanner(): Scanner {
     return Scanner(System.`in`).useLocale(Locale.UK)
 }
 
+/**
+ * Función que cierra el objeto `Scanner`.
+ *
+ * @param scanner El objeto `Scanner` que se va a cerrar.
+ */
 fun cerrarscanner(scanner: Scanner) {
     scanner.close()
 }
 
+/**
+ * Función que cierra el programa con un código secreto.
+ *
+ * @param num El código que, si es igual a 4321, apaga la máquina.
+ */
 fun cerrarprogr(num: Int) {
     println("Codigo secreto correcto, programa apagado.")
 }
 
+/**
+ * Muestra el menú principal para elegir el tipo de billete y devuelve la opción seleccionada.
+ *
+ * @param scan El objeto `Scanner` para leer la opción seleccionada.
+ * @return Un entero que representa la opción elegida por el usuario.
+ */
 fun menu(scan: Scanner): Int {
     var opcion = pedirnumero(
         """
@@ -69,11 +101,24 @@ fun menu(scan: Scanner): Int {
     return opcion
 }
 
+/**
+ * Función que pide un número al usuario.
+ *
+ * @param msg El mensaje que se muestra al usuario para ingresar un número.
+ * @param scan El objeto `Scanner` utilizado para leer la entrada del usuario.
+ * @return Un número entero proporcionado por el usuario.
+ */
 fun pedirnumero(msg: String, scan: Scanner): Int {
     println(msg)
     return scan.nextInt()
 }
 
+/**
+ * Solicita al usuario que seleccione el tipo de billete que desea comprar.
+ *
+ * @param scan El objeto `Scanner` utilizado para leer la opción seleccionada.
+ * @return El precio del billete seleccionado como un valor de tipo `Double`.
+ */
 fun pedirtipo(scan: Scanner): Double {
     println("Selecciona el tipo de billete:")
     println("1.- Bitllet senzill (2.40€)")
@@ -101,6 +146,13 @@ fun pedirtipo(scan: Scanner): Double {
     return tipo
 }
 
+/**
+ * Pide al usuario la zona del billete que desea comprar.
+ *
+ * @param msg El mensaje que se le muestra al usuario para que ingrese la zona del billete.
+ * @param scan El objeto `Scanner` utilizado para leer la zona seleccionada.
+ * @param cesta La lista donde se almacenarán los billetes comprados.
+ */
 fun pedirzona(msg: String, scan: Scanner, cesta: MutableList<billete>) {
     var seguiranyadiendo = true
 
@@ -139,7 +191,12 @@ fun pedirzona(msg: String, scan: Scanner, cesta: MutableList<billete>) {
     }
 }
 
-// Calculo de billetes con las zonas
+/**
+ * Calcula el total de la compra sumando el precio de los billetes según las zonas seleccionadas.
+ *
+ * @param cesta La lista de billetes que el usuario ha añadido a su compra.
+ * @param scan El objeto `Scanner` utilizado para leer cualquier dato adicional durante el cálculo.
+ */
 fun calculo(cesta: MutableList<billete>, scan: Scanner) {
     var total = 0.00
     for (billete in cesta) {
@@ -156,7 +213,12 @@ fun calculo(cesta: MutableList<billete>, scan: Scanner) {
     pagar(cesta, total, scan)
 }
 
-// Función para imprimir el tiquet
+/**
+ * Imprime el tiquet final de la compra, mostrando el tipo de cada billete y su zona.
+ *
+ * @param cesta La lista de billetes comprados.
+ * @param total El total a pagar por los billetes.
+ */
 fun imprimirtiquet(cesta: MutableList<billete>, total: Double) {
     println("\n_____TIQUET_____")
     cesta.forEach { billete ->
@@ -167,17 +229,29 @@ fun imprimirtiquet(cesta: MutableList<billete>, total: Double) {
     println("Recoge tu tiquet y pago.")
 }
 
-// Función para calcular el cambio
+/**
+ * Calcula el cambio a devolver al usuario.
+ *
+ * @param total El total de la compra.
+ * @param dinerointroducido El dinero que el usuario ha introducido.
+ * @return El cambio a devolver al usuario.
+ */
 fun calcularcambio(total: Double, dinerointroducido: Double): Double {
     return dinerointroducido - total
 }
 
-// Función para gestionar el pago
+/**
+ * Función que gestiona el pago, validando que el dinero introducido sea válido y suficiente.
+ *
+ * @param cesta La lista de billetes comprados.
+ * @param total El total de la compra que debe ser pagado.
+ * @param scan El objeto `Scanner` utilizado para leer las cantidades de dinero introducidas por el usuario.
+ */
 fun pagar(cesta: MutableList<billete>, total: Double, scan: Scanner) {
-    val dineroValido = arrayOf(0.5, 1.0, 2.0, 5.0, 10.0, 20.0, 50.0, 100.0, 200.0, 500.0) // Monedas y billetes válidos
+    val dineroValido = arrayOf(0.05, 0.10, 0.20, 0.20, 0.5, 1.0, 5.0, 10.0, 20.0, 50.0) // Monedas y billetes válidos
     var dinerointroducido = 0.0
     while (dinerointroducido < total) {
-        println("Introduce el dinero para pagar el total ($total €).")
+        println("Introduce el dinero para pagar el total ($total €), Introduce de uno en uno.")
         val dinero = scan.nextDouble()
 
         // Consumir la línea residual después de leer nextDouble
